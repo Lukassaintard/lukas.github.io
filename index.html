@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La Nuez Club</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff6e5;
+            color: #0b2b18;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(3, 32, 18, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 14px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(219, 170, 76, 0.35);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .brand img {
+            width: 78px;
+            height: 78px;
+            object-fit: cover;
+            border-radius: 50%;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+        }
+
+        .brand h1 {
+            color: #f4c86a;
+            font-size: 28px;
+            font-family: Georgia, serif;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 25px;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            color: #f4c86a;
+        }
+
+        .hero {
+            min-height: 90vh;
+            background:
+                radial-gradient(circle at top right, rgba(244, 200, 106, 0.18), transparent 25%),
+                linear-gradient(135deg, #031b0f, #06351e);
+            color: white;
+            padding: 80px 7%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-texto h2 {
+            font-size: 65px;
+            line-height: 1.05;
+            margin-bottom: 20px;
+            font-family: Georgia, serif;
+        }
+
+        .hero-texto span {
+            color: #f4c86a;
+        }
+
+        .hero-texto p {
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            max-width: 550px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #18a53e, #0f7a2f);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.2s;
+            box-shadow: 0 12px 25px rgba(10, 120, 42, 0.35);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .telefono {
+            margin-top: 25px;
+            color: #f4c86a;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .hero-logo {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-logo img {
+            width: 100%;
+            max-width: 480px;
+            border-radius: 35px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+        }
+
+        section {
+            padding: 80px 7%;
+        }
+
+        .section-head {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-head p {
+            color: #b07a22;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .section-head h2 {
+            font-size: 50px;
+            font-family: Georgia, serif;
+            color: #0b2b18;
+        }
+
+        .catalogo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+        }
+
+        .producto {
+            background: #fffdf8;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: 0.25s;
+        }
+
+        .producto:hover {
+            transform: translateY(-10px);
+        }
+
+        .foto {
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .foto img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .producto-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .tipo {
+            color: #a46f1d;
+            font-size: 13px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .producto h3 {
+            font-size: 32px;
+            color: #0b2b18;
+            margin-bottom: 8px;
+            font-family: Georgia, serif;
+        }
+
+        .gramos {
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .descripcion {
+            color: #555;
+            line-height: 1.5;
+            min-height: 70px;
+        }
+
+        .precio {
+            font-size: 34px;
+            color: #0d7c2b;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .producto .btn {
+            width: 100%;
+        }
+
+        .beneficios {
+            margin-top: 70px;
+            background: linear-gradient(135deg, #031b0f, #06351e);
+            border-radius: 30px;
+            padding: 35px;
+            color: white;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .beneficio {
+            text-align: center;
+        }
+
+        .beneficio .icono {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        .beneficio h3 {
+            color: #f4c86a;
+            margin-bottom: 10px;
+            font-family: Georgia, serif;
+        }
+
+        .contacto {
+            margin-top: 70px;
+            background: #f4dfb8;
+            border-radius: 30px;
+            padding: 45px;
+            display: grid;
+            grid-template-columns: 120px 1fr 260px;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .contacto img {
+            width: 120px;
+            border-radius: 50%;
+        }
+
+        .contacto h3 {
+            font-size: 34px;
+            margin-bottom: 10px;
+            font-family: Georgia, serif;
+        }
+
+        footer {
+            background: #031b0f;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 70px;
+        }
+
+        @media(max-width:900px) {
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin: 10px;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-texto h2 {
+                font-size: 45px;
+            }
+
+            .hero-texto p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .contacto {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .contacto img {
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <div class="brand">
+            <img src="logo-la-nuez.jpg" alt="La Nuez Club">
+            <h1>La Nuez Club</h1>
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#beneficios">Beneficios</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+
+    </header>
+
+    <main class="hero" id="inicio">
+
+        <div class="hero-texto">
+
+            <h2>
+                Frutos secos <span>premium</span> para disfrutar de verdad
+            </h2>
+
+            <p>
+                Mixes seleccionados con ingredientes ricos, frescos y perfectos
+                para acompañarte todos los días.
+            </p>
+
+            <a class="btn"
+                href="https://wa.me/56966020356"
+                target="_blank">
+                Pedir por WhatsApp
+            </a>
+
+            <p class="telefono">
+                📞 +569 6602 0356
+            </p>
+
+        </div>
+
+        <div class="hero-logo">
+            <img src="logo-la-nuez.jpg" alt="La Nuez Club">
+        </div>
+
+    </main>
+
+    <section id="catalogo">
+
+        <div class="section-head">
+            <p>Catálogo</p>
+            <h2>Nuestros Mixes</h2>
+        </div>
+
+        <div class="catalogo">
+
+            <!-- MIX DE LA CASA -->
+            <div class="producto">
+
+                <div class="foto">
+                    <img src="img/mixcasa.png" alt="Mix de la Casa">
+                </div>
+
+                <div class="producto-content">
+
+                    <p class="tipo">Mix Premium</p>
+
+                    <h3>Mix de la Casa</h3>
+
+                    <p class="gramos">250g</p>
+
+                    <p class="descripcion">
+                        Pistacho, cajú, almendra y nuez mariposa.
+                    </p>
+
+                    <p class="precio">$6.990</p>
+
+                    <a class="btn"
+                    href="https://wa.me/56966020356?text=Hola,%20quiero%20pedir%20Mix%20de%20la%20Casa"
+                    target="_blank">
+                        Comprar
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- MIX ENERGÉTICO -->
+            <div class="producto">
+
+                <div class="foto">
+                    <img src="img/mixenergetico.png" alt="Mix Energético">
+                </div>
+
+                <div class="producto-content">
+
+                    <p class="tipo">Mix Fitness</p>
+
+                    <h3>Mix Energético</h3>
+
+                    <p class="gramos">250g</p>
+
+                    <p class="descripcion">
+                        Almendra, cranberries, pasas, maní y coco.
+                    </p>
+
+                    <p class="precio">$4.990</p>
+
+                    <a class="btn"
+                    href="https://wa.me/56966020356?text=Hola,%20quiero%20pedir%20Mix%20Energético"
+                    target="_blank">
+                        Comprar
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- MIX DULCE -->
+            <div class="producto">
+
+                <div class="foto">
+                    <img src="img/mixdulce.png" alt="Mix Dulce">
+                </div>
+
+                <div class="producto-content">
+
+                    <p class="tipo">Mix Dulce</p>
+
+                    <h3>Mix Dulce</h3>
+
+                    <p class="gramos">250g</p>
+
+                    <p class="descripcion">
+                        Chocopiedra, cranberries, cajú y maní japonés.
+                    </p>
+
+                    <p class="precio">$5.990</p>
+
+                    <a class="btn"
+                    href="https://wa.me/56966020356?text=Hola,%20quiero%20pedir%20Mix%20Dulce"
+                    target="_blank">
+                        Comprar
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- MIX SALADO -->
+            <div class="producto">
+
+                <div class="foto">
+                    <img src="img/mixsalado.png" alt="Mix Salado">
+                </div>
+
+                <div class="producto-content">
+
+                    <p class="tipo">Mix Snack</p>
+
+                    <h3>Mix Salado</h3>
+
+                    <p class="gramos">300g</p>
+
+                    <p class="descripcion">
+                        Pistacho, maní japonés y almendra salada.
+                    </p>
+
+                    <p class="precio">$5.990</p>
+
+                    <a class="btn"
+                    href="https://wa.me/56966020356?text=Hola,%20quiero%20pedir%20Mix%20Salado"
+                    target="_blank">
+                        Comprar
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div id="beneficios" class="beneficios">
+
+            <div class="beneficio">
+                <div class="icono">🌿</div>
+                <h3>100% Naturales</h3>
+                <p>Ingredientes ricos, frescos y seleccionados.</p>
+            </div>
+
+            <div class="beneficio">
+                <div class="icono">💎</div>
+                <h3>Calidad Premium</h3>
+                <p>Mixes creados para disfrutar de verdad.</p>
+            </div>
+
+            <div class="beneficio">
+                <div class="icono">🚚</div>
+                <h3>Entrega a Domicilio</h3>
+                <p>Pedidos rápidos coordinados por WhatsApp.</p>
+            </div>
+
+            <div class="beneficio">
+                <div class="icono">💚</div>
+                <h3>Compra Fácil</h3>
+                <p>Elige tu mix y pide directo desde la web.</p>
+            </div>
+
+        </div>
+
+        <div id="contacto" class="contacto">
+
+            <img src="logo-la-nuez.jpg" alt="Logo La Nuez Club">
+
+            <div>
+
+                <h3>Haz tu pedido</h3>
+
+                <p>
+                    Escríbenos al <strong>+569 6602 0356</strong>
+                    y coordinamos tu compra.
+                </p>
+
+            </div>
+
+            <a class="btn"
+            href="https://wa.me/56966020356"
+            target="_blank">
+                Ir a WhatsApp
+            </a>
+
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 La Nuez Club · Frutos secos premium</p>
+    </footer>
+
+</body>
+
+</html>
